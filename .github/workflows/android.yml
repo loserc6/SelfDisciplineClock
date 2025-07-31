@@ -30,10 +30,9 @@ jobs:
           npm install --legacy-peer-deps
 
       - name: Setup Android SDK
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 31
-          script: echo "SDK installed"
+        run: |
+          yes | sdkmanager --licenses
+          sdkmanager "platform-tools" "build-tools;35.0.0" "platforms;android-31"
 
       - name: Build APK
         run: |
